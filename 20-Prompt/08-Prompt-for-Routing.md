@@ -1,18 +1,8 @@
-# **Prompt for Routing**
-
-## **Descriptions**  
 ## **Description**  
 Directs the AI to act as a Routing Agent that analyzes user input, extracts key topics, and classifies the query into one of three categories:
 - **Technical Support:** For issues like computer errors or system malfunctions.
 - **Customer Support:** For inquiries regarding orders, payments, or refunds.
 - **Information Search:** For requests related to data or statistics.
-
-The AI confirms the routing decision with a brief summary message and requests further details if the input is ambiguous. All necessary inferences are made internally to ensure a concise and systematic routing process.
-
-![Diagram](assets/08-RoteDiagram.png)
-
-
----
 
 ## **Input**
 
