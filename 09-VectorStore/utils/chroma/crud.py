@@ -164,20 +164,29 @@ class ChromaDocumentMangager(DocumentManager):
                 - where: A Where type dict used to filter the delection by. E.g. {"$and": [{"color" : "red"}, {"price": {"$gte": 4.20}]}}. Optional.
                 - where_document: A WhereDocument type dict used to filter the deletion by the document content. E.g. {$contains: {"text": "hello"}}. Optional.
         """
+        try:
+            if ids is None:  # all delete
+                ids = self.collection.get(include=[])["ids"]
+            else:
+                where_condition = (
+                    filters["where"] if filters and "where" in filters else None
+                )
 
-        if ids is None:  # all delete
-            ids = self.collection.get(include=[])["ids"]
+                where_document_condition = (
+                    filters["where_document"]
+                    if filters and "where_document" in filters
+                    else None
+                )
+                ids = self.collection.get(
+                    ids=ids,
+                    include=[],
+                    where=where_condition,
+                    where_document=where_document_condition,
+                )["ids"]
 
-        where_condition = filters["where"] if filters and "where" in filters else None
+            self.collection.delete(ids=ids)
 
-        where_document_condition = (
-            filters["where_document"]
-            if filters and "where_document" in filters
-            else None
-        )
+            print(f"{len(ids)} data deleted")
 
-        self.collection.delete(
-            ids=ids,
-            where=where_condition,
-            where_document=where_document_condition,
-        )
+        except ValueError as e:
+            print("Collection is Empty or No ids in Collection")
