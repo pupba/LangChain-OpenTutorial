@@ -159,31 +159,76 @@ class ChromaDocumentMangager(DocumentManager):
     ) -> None:
         """
         Args:
-            - ids: The ids of the embeddings to delete
-            - filters
-                - where: A Where type dict used to filter the delection by. E.g. {"$and": [{"color" : "red"}, {"price": {"$gte": 4.20}]}}. Optional.
-                - where_document: A WhereDocument type dict used to filter the deletion by the document content. E.g. {$contains: {"text": "hello"}}. Optional.
+            - ids: The IDs of the embeddings to delete.
+            - filters: A dictionary for filtering the data to be deleted.
+                - where: A dictionary for conditional filtering.
+                - where_document: A dictionary for document-based filtering.
         """
+
         try:
-            where_condition = (
-                filters["where"] if filters and "where" in filters else None
-            )
+            # Case 1: No ids and no filters -> Delete All
+            if not ids and not filters:
+                all_data = self.collection.get(include=[])
+                if "ids" in all_data:
+                    ids = all_data["ids"]
+                    print(f"{len(ids)} data deleted")
+                else:
+                    return
 
-            where_document_condition = (
-                filters["where_document"]
-                if filters and "where_document" in filters
-                else None
-            )
-            ids = self.collection.get(
-                ids=ids,
-                include=[],
-                where=where_condition,
-                where_document=where_document_condition,
-            )["ids"]
+            # Case 2: Only ids provided -> Delete by IDs
+            elif ids and not filters:
+                self.collection.delete(ids=ids)
+                print(f"{len(ids)} data deleted")
+                return
 
-            self.collection.delete(ids=ids)
+            # Case 3: Only filters provided -> Delete by filters
+            elif not ids and filters:
+                where_condition = filters.get("where")
+                where_document_condition = filters.get("where_document")
 
-            print(f"{len(ids)} data deleted")
+                # Get the ids to delete based on filters
+                filtered_data = self.collection.get(
+                    include=[],
+                    where=where_condition,
+                    where_document=where_document_condition,
+                )
+
+                # Check if ids are retrieved correctly
+                if "ids" in filtered_data:
+                    ids = filtered_data["ids"]
+                    if ids:
+                        self.collection.delete(ids=ids)
+                        print(f"{len(ids)} data deleted")
+                    else:
+                        print("No matching data found for filters, nothing to delete.")
+                else:
+                    print("No data found with the given filters.")
+                return
+
+            # Case 4: Both ids and filters provided -> Invalid scenario
+            elif ids and filters:
+                where_condition = filters.get("where")
+                where_document_condition = filters.get("where_document")
+
+                # Get the filtered ids from the collection
+                filtered_data = self.collection.get(
+                    include=[],
+                    where=where_condition,
+                    where_document=where_document_condition,
+                )
+
+                # Extract filtered ids
+                filtered_ids = filtered_data.get("ids", [])
+
+                # Find intersection of given ids and filtered ids
+                intersect_ids = list(set(ids) & set(filtered_ids))
+
+                if intersect_ids:
+                    self.collection.delete(ids=intersect_ids)
+                    print(f"{len(intersect_ids)} data deleted")
+                else:
+                    print("No matching data found for the given ids and filters.")
+                return
 
         except ValueError as e:
-            print("Collection is Empty or No ids in Collection")
+            print(f"Error during deletion: {str(e)}")
