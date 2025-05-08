@@ -342,20 +342,20 @@ class PGVectorIndexManager:
             return False
         else:
             if self.client is not None:
-                return pgVectorCRUDManager(
+                return PGVectorDocumentManager(
                     embedding=embedding,
                     client=self.client,
                     collection_name=collection_name,
                 )
             else:
-                return pgVectorCRUDManager(
+                return PGVectorDocumentManager(
                     embedding=embedding,
                     connection_info=self.connection_str,
                     collection_name=collection_name,
                 )
 
     def get_index(self, embedding, collection_name):
-        return pgVectorCRUDManager(
+        return PGVectorDocumentManager(
             embedding=embedding,
             connection_info=self.connection_str,
             collection_name=collection_name,
