@@ -8,7 +8,7 @@ from hashlib import md5
 import os, time
 
 
-class Neo4jCRUDManager(DocumentManager):
+class Neo4jDocumentManager(DocumentManager):
     def __init__(self, client, index_name, embedding):
         self.index_name = index_name
         self.client = client

@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-class WeaviateCRUDManager(DocumentManager):
+class WeaviateDocumentManager(DocumentManager):
     def __init__(self, client, collection_name, embeddings: Optional[Any] = None):
         self.client = client
         self.collection_name = collection_name

@@ -185,7 +185,7 @@ def _get_embedding_collection_store(vector_dimension: Optional[int] = None) -> A
     return _classes
 
 
-class pgVectorIndexManager:
+class PGVectorIndexManager:
     def __init__(
         self,
         client=None,
@@ -362,7 +362,7 @@ class pgVectorIndexManager:
         )
 
 
-class pgVectorCRUDManager(DocumentManager):
+class PGVectorDocumentManager(DocumentManager):
     def __init__(
         self,
         embedding,

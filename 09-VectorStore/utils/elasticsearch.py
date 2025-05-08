@@ -116,7 +116,7 @@ class ElasticsearchIndexManager:
             raise
 
 
-class ElasticsearchCRUDManager(DocumentManager):
+class ElasticsearcDocumentManager(DocumentManager):
     def __init__(self, client, index_name, embedding):
         self.es = client
         self.index_name = index_name
