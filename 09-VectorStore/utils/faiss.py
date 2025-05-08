@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, List, Optional, Any, Iterable
 
 
-class FAISSDocumentManager(DocumentManager):
+class FaissDocumentManager(DocumentManager):
     def __init__(
         self, dim: int = 768, embedding: Optional[Any] = None, **kwargs
     ) -> None:
