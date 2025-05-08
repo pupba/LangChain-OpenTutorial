@@ -235,7 +235,7 @@ class ElasticsearchCRUDManager(DocumentManager):
         from langchain.schema import Document
         try:
             query_vector = self.embedding.embed_query(query)
-            # filter 쿼리 생성
+            # Create filter query
             filter_clauses = []
             if filters:
                 for key, value in filters.items():
