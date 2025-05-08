@@ -1,4 +1,4 @@
-from utils.vectordbinterface import DocumentManager
+from utils.base import DocumentManager
 from typing import Optional, Any, Dict, Iterable, List, Callable
 from pinecone import Pinecone, Vector, ServerlessSpec
 from uuid import uuid4

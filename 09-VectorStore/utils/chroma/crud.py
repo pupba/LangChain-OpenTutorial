@@ -1,5 +1,5 @@
-from utils.vectordbinterface import DocumentManager
-from utils.vectordbinterface import Iterable, Any, Optional, List, Dict
+from utils.base import DocumentManager
+from utils.base import Iterable, Any, Optional, List, Dict
 from chromadb.api import ClientAPI  # Client Type
 from chromadb.utils import embedding_functions
 from uuid import uuid4

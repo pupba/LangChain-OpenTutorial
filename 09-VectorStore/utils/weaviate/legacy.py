@@ -12,7 +12,7 @@ from typing import Any, Dict, List, Optional, Union, Tuple, Iterable
 from langchain_core.language_models import BaseChatModel
 from langchain_core.retrievers import BaseRetriever
 from langchain.chains.qa_with_sources.retrieval import RetrievalQAWithSourcesChain
-from utils.vectordbinterface import DocumentManager
+from utils.base import DocumentManager
 from langchain_core.embeddings import Embeddings
 from weaviate.classes.config import Property
 

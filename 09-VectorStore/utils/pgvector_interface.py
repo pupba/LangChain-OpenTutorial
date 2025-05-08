@@ -1,4 +1,4 @@
-from .vectordbinterface import DocumentManager
+from .base import DocumentManager
 from langchain_core.documents import Document
 from typing import List, Union, Dict, Any, Optional, Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed

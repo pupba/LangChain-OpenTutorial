@@ -3,7 +3,7 @@ import logging
 from weaviate.classes.init import Auth
 from weaviate.classes.config import Configure
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
-from utils.vectordbinterface import DocumentManager
+from utils.base import DocumentManager
 from weaviate.classes.config import Property, DataType
 from weaviate.util import generate_uuid5
 from weaviate.classes.query import MetadataQuery, Filter

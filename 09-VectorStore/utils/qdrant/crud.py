@@ -1,4 +1,4 @@
-from utils.vectordbinterface import DocumentManager
+from utils.base import DocumentManager
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
     VectorParams,

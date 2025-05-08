@@ -30,7 +30,7 @@ from pinecone_text.hybrid import hybrid_convex_scale
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-from .vectordbinterface import DocumentManager
+from .base import DocumentManager
 from langchain_core.documents import Document
 
 

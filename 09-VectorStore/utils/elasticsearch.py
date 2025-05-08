@@ -12,7 +12,7 @@ from elasticsearch.exceptions import NotFoundError
 from langchain_openai import OpenAIEmbeddings
 
 # Interface
-from utils.vectordbinterface import DocumentManager
+from utils.base import DocumentManager
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)

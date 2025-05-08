@@ -9,7 +9,7 @@ from qdrant_client.http.models import (
 )
 from qdrant_client import models
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from utils.vectordbinterface import DocumentManager
+from utils.base import DocumentManager
 from qdrant_client.http.models import Distance
 
 

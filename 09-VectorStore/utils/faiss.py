@@ -1,5 +1,5 @@
-from utils.vectordbinterface import DocumentManager
-from utils.vectordbinterface import Iterable, Any, Optional, List, Dict
+from utils.base import DocumentManager
+from utils.base import Iterable, Any, Optional, List, Dict
 from langchain_core.documents import Document
 import faiss
 import numpy as np
