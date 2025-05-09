@@ -337,15 +337,15 @@ print(response)
     The final answer is: 42 years old.
 </pre>
 
-## Dynamic Example Selection with ```Chroma```
+## Dynamic Example Selection with **Chroma**
 
 Sometimes we need to go through multiple steps of thinking to evaluate a single question. Breaking down the question into steps and guiding towards the desired answer can lead to better quality responses.
-```Chroma``` provides an efficient way to store and retrieve examples based on semantic similarity, enabling dynamic example selection in workflows.
+**Chroma** provides an efficient way to store and retrieve examples based on semantic similarity, enabling dynamic example selection in workflows.
 
 1. **Embedding and Vector Store Initialization**
 
    - Use ```OpenAIEmbeddings``` to embed examples.
-   - Store the embeddings in a ```Chroma``` vector store for efficient retrieval.
+   - Store the embeddings in a **Chroma** vector store for efficient retrieval.
 
 2. **Example Storage**
 
